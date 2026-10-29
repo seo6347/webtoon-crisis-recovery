@@ -12,7 +12,7 @@ Extract the prepared archive at the repository root. The result must be `data/pr
 
 Required inputs include six processed Parquet tables, the per-title comments under `data/processed/comments/`, `data/processed/labeling_result_codex_final.xlsx`, and the four final rater workbooks under `data/팀원별 라벨링/`. Generated `rq1_*`–`rq4_*` files and plots do not need to be downloaded beforehand.
 
-The notebook contains the original data-download link. Make sure you are using the prepared archive matching this analysis.
+Download the archive and follow the verified placement and checksum instructions in [Prepared Data](data.md). The Drive archive matches the data used in the analysis execution check.
 
 ## Option A: uv
 
