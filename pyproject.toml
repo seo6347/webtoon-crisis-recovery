@@ -1,0 +1,31 @@
+[project]
+name = "webtoon-crisis-recovery"
+version = "0.1.0"
+description = "Webtoon crisis and recovery analysis using episode ratings and reader comments"
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "pandas==2.3.1",
+    "numpy==2.5.4",
+    "matplotlib==3.11.2",
+    "fastparquet==2026.3.0",
+    "pyarrow==26.0.0",
+    "openpyxl==3.1.5",
+    "krippendorff==0.9.0",
+    "tqdm==4.70.1",
+]
+
+[project.optional-dependencies]
+collection = [
+    "beautifulsoup4>=4.14.3",
+    "requests>=2.33.1",
+]
+
+[dependency-groups]
+dev = [
+    "ipykernel>=6.29.5,<8",
+    "jupyterlab>=4,<5",
+]
+
+[tool.uv]
+package = false
