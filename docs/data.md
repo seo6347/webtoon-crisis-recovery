@@ -1,51 +1,18 @@
 # Prepared Data
 
-## Collection scope and purpose
-
-The collection snapshot is **May 23, 2026**. The collection covered all collectable works listed across Naver Webtoon's weekday pages at that time, their accessible episodes and episode ratings, and the **best comments for each accessible episode**.
-
-**Completed-series titles were excluded:** they were not accessible through the project's collection workflow. This is a snapshot of the weekday-listed works available for collection, not a corpus of all webtoons ever published on Naver Webtoon. Best comments are a platform-selected subset of reader responses, not all comments.
-
-The data were collected and used solely for a university Data Science course project. The scraping/crawling was **not officially authorized by Naver Webtoon**, and this project is not affiliated with or endorsed by Naver Webtoon. This purpose statement does not grant permission to reuse or redistribute third-party content.
-
-## Download
-
 [Download data.zip from Google Drive](https://drive.google.com/file/d/15eoIuDqCiX1QvS9BnkfTSSbzZDW5uYbA/view)
 
-The archive contains collected/processed webtoon data, finalized comment labels, and rater workbooks used by the notebook. On 2026-10-29, the Drive archive was downloaded and its SHA-256 matched the uploaded archive used in the successful analysis execution check. Drive permission metadata showed link-based `anyone / reader` access with discovery disabled; an anonymous-browser download was not separately tested.
+The archive (about 79.1 MB) contains collected and processed webtoon data, finalized comment labels, and the team members' labeling workbooks. See the [README](../README.md#data-and-analysis-scale) for the collection scope and [course-use statement](../README.md#data-source-and-course-use).
 
-| Item | Value |
-| --- | --- |
-| Archive size | 79,066,021 bytes (79.1 MB / 75.4 MiB) |
-| Files | 711 |
-| Collected works | 694 |
-| Episode rows | 59,991 |
-| Comment files / rows | 694 / 721,996 |
-| Finalized label rows | 46,815 |
+## Placement
 
-## Integrity and extraction
-
-Save the archive as `data.zip` at the repository root. If the browser adds a suffix, rename the downloaded copy before running these commands.
-
-Optional SHA-256 check, using Python 3.12:
-
-```bash
-python -c "import hashlib; from pathlib import Path; actual=hashlib.sha256(Path('data.zip').read_bytes()).hexdigest(); expected=Path('docs/data.sha256').read_text().split()[0]; print(actual); assert actual == expected, 'Archive checksum mismatch'"
-```
-
-Expected SHA-256:
-
-```text
-ec0974b1ddb34def6d9785f5f323b5ee96083af6e90f1cca517a2dd6e80295eb
-```
-
-Extract at the repository root:
+Save the archive as `data.zip` at the repository root and extract it there:
 
 ```bash
 python -m zipfile -e data.zip .
 ```
 
-The ZIP already contains `data/`. Do not extract it into an additional `data/` folder.
+The ZIP already contains a top-level `data/` directory. The result must be `data/processed/`, not `data/data/processed/`.
 
 ## Required layout
 
@@ -76,18 +43,10 @@ webtoon-crisis-recovery/
 
 The archive also contains initial rater workbooks and `groundtruth_merged.xlsx`. The default agreement calculation reads the four final workbooks and regenerates the merged file. `works_base.csv` belongs to historical collection/EDA and is not required by the Step 5–9 path.
 
-## Validate and analyze
+## Inputs and generated outputs
 
-Follow [Environment Setup](setup.md), restart the kernel, and start at **Step 5. 데이터 수집 검증 코드**, including the initial imports and path setup. Continue through Step 9 in order.
+Required inputs for Step 5–9 are the six processed Parquet tables, per-title best-comment files, finalized comment-label workbook, and four final rater workbooks shown above.
 
-Step 5 generates `data/logs/validation_report.json` and `validation_issues.csv`. Inspect errors, warnings, and dataset row counts before proceeding. In the successful execution check, all validation issues were zero.
+The analysis generates `rq1_*`–`rq4_*` tables, `data/logs/`, and `data/plots/`. These outputs do not need to be downloaded separately. Downloaded inputs and generated outputs are excluded from Git.
 
-The subsequent `rq1_*`–`rq4_*` tables and plots are generated outputs and do not need to be supplied separately.
-
-## Scope
-
-The archive supports replaying analysis from collected data and finalized labels. It does not rerun live collection, LLM labeling, or human review. No LLM API key is required.
-
-Downloaded inputs, archives, and generated outputs are excluded from Git. Keep the archive unchanged if using the recorded checksum. Replacing it requires updating the checksum and checking compatibility again.
-
-Underlying webtoon metadata and reader comments originate from Naver Webtoon; labels were prepared by the project team. Public download access is not a separate license grant for third-party content.
+Follow [Run the Analysis](../README.md#run-the-analysis) for environment setup and execution order. The workflow reads prepared data and finalized labels; it does not repeat live collection, LLM labeling, or human review.
