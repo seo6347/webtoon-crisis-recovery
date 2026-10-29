@@ -6,6 +6,8 @@ A four-person Data Science course project at **Soongsil University**, combining 
 
 **Team:** 쉬었음청년 · **Team lead / repository maintainer:** [Donggyun Seo](https://github.com/seo6347)
 
+**My contributions:** RQ3 recovery/transition analysis, RQ4 work-level trajectory analysis, and data collection and preprocessing.
+
 [Analysis Notebook](webtoon_crisis_recovery.ipynb) · [Download Prepared Data](https://drive.google.com/file/d/15eoIuDqCiX1QvS9BnkfTSSbzZDW5uYbA/view) · [Data Guide](docs/data.md) · [Environment Setup](docs/setup.md)
 
 ## Project Overview
@@ -22,6 +24,10 @@ The integrated notebook includes the original collection and cleaning code for r
 | **RQ4 — Work-level trajectories** | What crisis–recovery patterns emerge across a work's episode history? | Work-level trajectory features, typology, representative cases |
 
 ## Data and Analysis Scale
+
+The collection snapshot is **May 23, 2026**. The collection covered all collectable works listed across Naver Webtoon's weekday pages at that time, their accessible episodes and episode ratings, and the **best comments for each accessible episode**.
+
+**Completed-series titles were excluded:** they were not accessible through the project's collection workflow. This is a snapshot of the weekday-listed works available for collection, not a corpus of all webtoons ever published on Naver Webtoon. Best comments are a platform-selected subset of reader responses, not all comments.
 
 | Item | Count |
 | --- | ---: |
@@ -68,7 +74,7 @@ These are operational definitions implemented in the notebook. They describe obs
 
 ## Selected Descriptive Results
 
-The reproduced RQ3 output shows differences in strong-recovery rates across dominant substantive causes:
+The RQ3 analysis shows differences in strong-recovery rates across dominant substantive causes:
 
 | Dominant substantive cause | Eligible crisis clusters | Strong-recovery ratio |
 | --- | ---: | ---: |
@@ -114,18 +120,7 @@ Start at **Step 5. 데이터 수집 검증 코드**, including its initial impor
 
 Outputs are written to `data/processed/rq1_*` through `rq4_*`, `data/logs/`, and `data/plots/`. Downloaded inputs and generated outputs are excluded from Git.
 
-## Reproduction Check
-
-On **2026-10-29**, a fresh Python 3.12.14 process executed all **26 analysis code cells** from Step 5 through the final RQ4 cell using the supplied data archive.
-
-- All 26 cells completed.
-- Step 5 reported **zero validation errors and warnings**.
-- Primary-cause agreement was reproduced as **alpha = 0.936**.
-- The run generated the final RQ4 table and 319 PNG files.
-
-The code cells and saved notebook outputs were preserved when the environment instructions were updated. Direct analysis dependencies in `pyproject.toml` match the versions used for the check. The subsequently generated `uv.lock` was resolution-checked, but the entire analysis has not been rerun in that newly locked environment.
-
-The execution check used a non-interactive plotting backend. Missing `Malgun Gothic` caused font warnings; identical Korean text rendering requires the font setup described in the environment guide.
+Execution-check details and environment limitations are recorded in [Environment Setup](docs/setup.md#validation-record).
 
 ## Repository Guide
 
@@ -142,12 +137,23 @@ The execution check used a non-interactive plotting backend. Missing `Malgun Got
 **Team lead:** Donggyun Seo (서동균)  
 **Team members:** 이정원, 한승원, 홍서진
 
-Collection was distributed across the four team members. This repository, maintained by Donggyun Seo, consolidates the team's complete submitted workflow and prepared-data analysis.
+### Donggyun Seo's contributions
+
+- **RQ3:** recovery strength, persistence, and subsequent-crisis transition analysis.
+- **RQ4:** work-level crisis–recovery trajectory analysis and typology.
+- **Data collection and preprocessing:** contributed to the collection and preparation of the webtoon data used in the integrated workflow.
+
+Data collection was shared across all four team members. The contributions above describe Donggyun Seo's work within the team project; RQ1–RQ4 are presented together to preserve the complete submitted workflow. This repository is maintained by Donggyun Seo.
 
 The earlier [DS_2026_Smeargle repository](https://github.com/PKTOSE/DS_2026_Smeargle) contains part of the collection work. This repository presents the integrated analysis rather than only that collection module.
 
+## Data Source and Course Use
+
+The data were collected and used solely for a university Data Science course project. The scraping/crawling was **not officially authorized by Naver Webtoon**, and this project is not affiliated with or endorsed by Naver Webtoon. This purpose statement does not grant permission to reuse or redistribute third-party content.
+
 ## Scope and Limitations
 
+- The dataset covers the collectable weekday-listed works in the May 23, 2026 snapshot; completed-series titles are excluded. Findings should not be generalized to all past or completed webtoons.
 - Data consist of collected Naver Webtoon ratings and **best comments**, not a complete or representative sample of every reader response.
 - Results depend on the observation window, operational crisis/recovery definitions, label taxonomy, and available follow-up.
 - Labeling and typology involve project-defined rules and human judgment.

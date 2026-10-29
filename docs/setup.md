@@ -66,6 +66,10 @@ Some plotting cells select `Malgun Gothic`. It must be available to Matplotlib f
 
 On 2026-10-29, a fresh Python 3.12.14 process executed all 26 code cells from Step 5 to the final RQ4 cell using the uploaded prepared archive. All cells completed. The data-validation report contained zero errors and warnings, and primary-cause Krippendorff's alpha was 0.936. This check covered analysis and saved figure generation with a non-interactive backend, not identical visual rendering or independent verification of every project claim.
 
+The run generated the final RQ4 table and 319 PNG files. Code cells and saved notebook outputs were preserved when the environment instructions were updated. Direct analysis dependencies in `pyproject.toml` match the versions used for this check. The subsequently generated `uv.lock` was resolution-checked, but the full analysis has not been rerun in that newly locked environment.
+
+Missing `Malgun Gothic` produced font warnings during the check. Zero validation warnings refers to the Step 5 data-validation report, not to plotting/font warnings.
+
 ## Historical collection code
 
 Optional collection packages can be installed with `uv sync --locked --group dev --extra collection`. This only installs the optional packages: some historical collection helpers reference external modules and are not a supported end-to-end recollection workflow.

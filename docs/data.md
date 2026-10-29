@@ -1,5 +1,13 @@
 # Prepared Data
 
+## Collection scope and purpose
+
+The collection snapshot is **May 23, 2026**. The collection covered all collectable works listed across Naver Webtoon's weekday pages at that time, their accessible episodes and episode ratings, and the **best comments for each accessible episode**.
+
+**Completed-series titles were excluded:** they were not accessible through the project's collection workflow. This is a snapshot of the weekday-listed works available for collection, not a corpus of all webtoons ever published on Naver Webtoon. Best comments are a platform-selected subset of reader responses, not all comments.
+
+The data were collected and used solely for a university Data Science course project. The scraping/crawling was **not officially authorized by Naver Webtoon**, and this project is not affiliated with or endorsed by Naver Webtoon. This purpose statement does not grant permission to reuse or redistribute third-party content.
+
 ## Download
 
 [Download data.zip from Google Drive](https://drive.google.com/file/d/15eoIuDqCiX1QvS9BnkfTSSbzZDW5uYbA/view)
