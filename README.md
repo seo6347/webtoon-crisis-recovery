@@ -8,7 +8,7 @@ A four-person Data Science course project at **Soongsil University**, combining 
 
 **My contributions:** RQ3 recovery/transition analysis, RQ4 work-level trajectory analysis, and data collection and preprocessing.
 
-[Analysis Notebook](webtoon_crisis_recovery.ipynb) · [Download Prepared Data](https://drive.google.com/file/d/15eoIuDqCiX1QvS9BnkfTSSbzZDW5uYbA/view) · [Data Guide](docs/data.md) · [Environment Setup](docs/setup.md)
+[Analysis Notebook](webtoon_crisis_recovery.ipynb) · [Download Prepared Data](https://drive.google.com/file/d/15eoIuDqCiX1QvS9BnkfTSSbzZDW5uYbA/view) · [Data Guide](docs/data.md)
 
 ## Project Overview
 
@@ -41,7 +41,7 @@ The collection snapshot is **May 23, 2026**. The collection covered all collecta
 
 These counts refer to different stages of the workflow. The 694 collected works are not all included in every downstream analysis; filtering, crisis presence, and follow-up availability determine the relevant analysis samples.
 
-The prepared data archive is **79,066,021 bytes** (about 79.1 MB) and contains 711 files. It is distributed separately from the code. See [Prepared Data](docs/data.md) for its checksum, directory layout, and input requirements.
+The prepared data archive is **79,066,021 bytes** (about 79.1 MB) and contains 711 files. It is distributed separately from the code. See [Prepared Data](docs/data.md) for its directory layout and input requirements.
 
 ## Method
 
@@ -98,7 +98,7 @@ The comparison is descriptive and unadjusted. Multiple clusters can belong to th
 python -m zipfile -e data.zip .
 ```
 
-The ZIP already contains a top-level `data/` directory. Confirm that `data/processed/` and `data/팀원별 라벨링/` exist directly under the repository root. See the [data guide](docs/data.md) for the required files and integrity check.
+The ZIP already contains a top-level `data/` directory. Confirm that `data/processed/` and `data/팀원별 라벨링/` exist directly under the repository root. See the [data guide](docs/data.md) for the required files.
 
 ### 2. Set up Python 3.12
 
@@ -110,7 +110,9 @@ uv run --locked --group dev python -m ipykernel install --user --name webtoon-cr
 uv run --locked --group dev jupyter lab webtoon_crisis_recovery.ipynb
 ```
 
-Select **Python (webtoon-crisis-recovery)** as the kernel. A venv/pip alternative is documented in [Environment Setup](docs/setup.md).
+Select **Python (webtoon-crisis-recovery)** as the kernel. In VS Code, open the notebook and select the same kernel. Run from the repository root so relative `data/` paths resolve correctly.
+
+Some plotting cells use `Malgun Gothic` for Korean labels. If it is unavailable, install a Korean font and update the plotting font settings to that font. Font warnings can affect text rendering without indicating a data-processing failure.
 
 ### 3. Execute Step 5 through Step 9
 
@@ -120,16 +122,13 @@ Start at **Step 5. 데이터 수집 검증 코드**, including its initial impor
 
 Outputs are written to `data/processed/rq1_*` through `rq4_*`, `data/logs/`, and `data/plots/`. Downloaded inputs and generated outputs are excluded from Git.
 
-Execution-check details and environment limitations are recorded in [Environment Setup](docs/setup.md#validation-record).
-
 ## Repository Guide
 
 | Path | Contents |
 | --- | --- |
 | [webtoon_crisis_recovery.ipynb](webtoon_crisis_recovery.ipynb) | Integrated submitted collection, cleaning, labeling documentation, and RQ1–RQ4 analysis |
 | [pyproject.toml](pyproject.toml) · [uv.lock](uv.lock) | Environment definition and resolved dependencies |
-| [docs/setup.md](docs/setup.md) | Environment, kernel, and execution instructions |
-| [docs/data.md](docs/data.md) · [docs/data.sha256](docs/data.sha256) | Prepared-data download, placement, and checksum |
+| [docs/data.md](docs/data.md) | Prepared-data download and required input files |
 | `data/` (download separately) | Prepared inputs and locally generated analysis outputs |
 
 ## Team and Project Context
